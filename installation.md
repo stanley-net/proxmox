@@ -50,9 +50,34 @@ The default gateway is set to `192.168.1.1`. The Wi-Fi interface `wlo1` is curre
 
 The network configuration was reviewed using `ip -br addr` and `/etc/network/interfaces`.
 
+## Storage Configuration Review
+
+The Proxmox node has two enabled and active storage pools.
+
+| Storage | Type | Total capacity | Used | Purpose |
+|---|---|---:|---:|---|
+| `local` | Directory | 39.41 GB | 5.68 GB (14.40%) | ISO images, backups, container templates and other supported content |
+| `local-lvm` | LVM-Thin | 52.78 GB | 0 B (0%) | Virtual machine disks and container volumes |
+
+The `local` storage uses the `/var/lib/vz` directory. The `local-lvm` storage is configured for virtual machine disk images and container volumes.
+
+Both storage pools were active during inspection. Capacity and usage values represent the state observed at the time of inspection.
+
+## Node Health and Resource Usage
+
+- CPU: Intel Core i5-3320M, 4 logical CPUs
+- Total memory: 7.63 GiB
+- Memory usage at inspection: 1.58 GiB (20.74%)
+- Root filesystem: 36.70 GiB total, 5.29 GiB used (14.40%)
+- Swap: 7.62 GiB total, 0 B used
+- Boot mode: EFI
+
+The node summary displays a warning that a non-production-ready repository is enabled. Repository configuration should be reviewed before system updates.
+
+
+
 ## 5. Next Steps
 
-- Review storage and node health
 - Plan virtual machines and backups
 - Plan the first virtual machine
 - Configure a backup strategy
