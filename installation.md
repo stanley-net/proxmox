@@ -40,9 +40,18 @@ The route lookup for `8.8.8.8` selects the gateway `192.168.1.1` and the source 
 
 The web management interface is accessible and administrator login is successful.
 
+## Network Configuration Review
+
+The Proxmox host uses a static IPv4 address (`192.168.1.10/24`) to provide consistent access to the management interface.
+
+The `vmbr0` bridge is connected to the physical network interface `nic0`. The IP address is assigned to the bridge rather than directly to the physical interface, allowing the host and virtual machines to use the same network bridge.
+
+The default gateway is set to `192.168.1.1`. The Wi-Fi interface `wlo1` is currently inactive and is not used for network management.
+
+The network configuration was reviewed using `ip -br addr` and `/etc/network/interfaces`.
+
 ## 5. Next Steps
 
-- Review the network configuration
 - Review storage and node health
 - Plan virtual machines and backups
 - Plan the first virtual machine
